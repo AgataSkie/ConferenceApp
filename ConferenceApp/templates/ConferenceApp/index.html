@@ -1,5 +1,14 @@
 {% extends 'ConferenceApp/layout.html' %}
 
 {% block content %}
-Welcome {{ user.username }}!
+
+
+{% if user.is_authenticated %}
+    <h3>Welcome {{ user.first_name }}!</h3>
+    <p>You have successfully logged-in</p>
+{% else %}
+    <h3>Welcome</h3>
+    <p>In order to view the page please log-in</p>
+{% endif %}
+
 {% endblock %}

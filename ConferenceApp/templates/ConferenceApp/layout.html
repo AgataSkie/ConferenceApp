@@ -32,18 +32,21 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="nav-toggle">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Sessions</a></li>
 
-					{% if user.is_authenticated %}
-						<li><a href="{% url 'conference:logout' %}">Logout</a></li>
-					{% else %}
-						<li><a href="{% url 'conference:login' %}">Login</a></li>
-						<li><a href="#">Register</a></li>
-					{% endif %}
-
-					{% if user.is_staff %}
+                    {% if user.is_staff %}
 						<li><a href="/admin">Administration</a></li>
 					{% endif %}
+
+					{% if user.is_authenticated %}
+						<li><a href="#">Sessions</a></li>
+                        <li><a href="{% url 'conference:logout' %}">Logout</a></li>
+
+					{% else %}
+						<li><a href="{% url 'conference:login' %}">Login</a></li>
+						<li><a href="{% url 'conference:register' %}">Register</a></li>
+					{% endif %}
+
+
 				</ul>
 			</div>
 		</div>
