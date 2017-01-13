@@ -38,7 +38,7 @@
 					{% endif %}
 
 					{% if user.is_authenticated %}
-						<li><a href="#">Sessions</a></li>
+						<li><a href="{% url 'conference:sessions_list' %}">Sessions</a></li>
                         <li><a href="{% url 'conference:logout' %}">Logout</a></li>
 
 					{% else %}
