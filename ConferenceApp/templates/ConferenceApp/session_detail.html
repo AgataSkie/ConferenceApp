@@ -2,22 +2,30 @@
 
 
 {% block content %}
-	<div class="row">
-		<div class="col-md-3"><strong>Title:</strong></div>
-		<div class="col-md-9">{{ object.title }}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3"><strong>Abstract:</strong></div>
-		<div class="col-md-9">{{ object.abstract }}</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3"><strong>Speaker:</strong></div>
-		<div class="col-md-9">{{ object.speaker }}</div>
-	</div>
+    <div>
+        <div class="row">
+            <div class="col-md-2"><strong>Title:</strong></div>
+            <div class="col-md-9">{{ object.title }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><strong>Abstract:</strong></div>
+            <div class="col-md-9">{{ object.abstract }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"><strong>Speaker:</strong></div>
+            <div class="col-md-9">{{ object.speaker }}</div>
+        </div>
+    </div>
     <br >
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<a href="{% url 'conference:sessions_list' %}">Return to list</a>
+		</div>
+        <div class="col-md-2">
+			<a href="{% url 'conference:session_update' object.pk %}">Change</a>
+		</div>
+        <div class="col-md-2">
+			<a href="{% url 'conference:session_delete' object.pk %}">Delete</a>
 		</div>
 	</div>
 {% endblock %}

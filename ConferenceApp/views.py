@@ -1,9 +1,13 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import (ListView, DetailView, UpdateView, CreateView, DeleteView)
+from django.core.urlresolvers import reverse_lazy
+from django.forms import ModelForm
+
+from ConferenceApp.forms import SessionForm
 from ConferenceApp.models import Session
 
-# Create your views here.
+
 def index(request):
     return render(request, 'ConferenceApp/index.html')
 
@@ -16,6 +20,16 @@ class SessionDetail(DetailView):
     model = Session
 
 
-@login_required
-def submit_session(request):
-    return render(request, 'ConferenceApp/submit_session.html')
+class SessionCreate(LoginRequiredMixin, CreateView):
+    model = Session
+    form_class = SessionForm
+
+
+class SessionUpdate(LoginRequiredMixin, UpdateView):
+    model = Session
+    form_class = SessionForm
+
+
+class SessionDelete(LoginRequiredMixin, DeleteView):
+    model = Session
+    success_url = reverse_lazy('conference:sessions_list')

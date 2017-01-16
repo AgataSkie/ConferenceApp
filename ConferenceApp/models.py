@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+# from
 
 
 # Create your models here.
@@ -26,8 +28,8 @@ SESSION_STATUS = (
     ('a', 'Approved'),
     ('p', 'pending'),
     ('r', 'rejected'),
-
 )
+
 
 class Session(models.Model):
     title = models.CharField(max_length=80)
@@ -36,5 +38,11 @@ class Session(models.Model):
     speaker = models.ForeignKey(Speaker)
     status = models.CharField(max_length=1, choices=SESSION_STATUS, default='p')
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('conference:session_detail', kwargs={'pk': self.pk})
